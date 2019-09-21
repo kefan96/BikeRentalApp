@@ -1,0 +1,25 @@
+.hide {
+    visibility: hidden;
+}
+
+div#error {
+    color: red;
+    padding-left: 2rem;
+}
+
+.flash {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flash-close {
+    cursor: pointer;
+}
+
+.flash-close:hover {
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 1rem;
+}
