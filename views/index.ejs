@@ -45,14 +45,17 @@
     </nav>
 
     <% if(success && success.length > 0){ %>
-        <div class="alert alert-success flash">
-            <%= success %>
-            <span><i class="far fa-times-circle flash-close" onclick="$('.flash').hide();"></i><span></span>
-        </div>
+    <div class="alert alert-success flash">
+        <%= success %>
+        <span><i class="far fa-times-circle flash-close" onclick="$('.flash').hide();"></i><span></span>
+    </div>
     <% } %>
 
     <!-- display all products -->
     <div class="container">
+        <div class="jumbotron mt-2">
+            <h3><i class="fas fa-biking"></i> Welcome to Bike Rental!!</h3>
+        </div>
         <div class="row">
             <div class="col-md-9">
                 <% rentalList.forEach(function(product){ %>
@@ -74,7 +77,7 @@
             <div class="col-md-3">
                 <div class="card" style="width: 100%; margin-top: 10%;">
                     <div class="card-header">
-                            <i class="fas fa-shopping-cart"></i> Your Cart
+                        <i class="fas fa-shopping-cart"></i> Your Cart
                     </div>
                     <div class="card-body">
                         <div id="cart" style="min-height: 50vh">
