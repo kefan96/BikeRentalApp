@@ -51,26 +51,28 @@
     </div>
     <% } %>
 
-    <!-- display all products -->
+
     <div class="container">
         <div class="jumbotron mt-2">
             <h3><i class="fas fa-biking"></i> Welcome to Bike Rental!!</h3>
+            <p id="message-sm"><em>Your cart is at the bottom.</em></p>
         </div>
         <div class="row">
+
+            <!-- display all products -->
             <div class="col-md-9">
                 <div class="row">
                     <% rentalList.forEach(function(product){ %>
                     <div class="col-md-4 col-6">
                         <div class="card my-1">
                             <img src="<%= product.image %>" alt="" class="card-img-top">
-                            <div class="card-body" style="height: 10rem;">
+                            <div class="card-body" id="product-body">
                                 <h5 class="card-title"><%= product.name %></h5>
                                 $<span class="card-text price"><%= product.price %></span>
                                 <span class="card-text type"><%= product.product_type %></span>
                                 <form id="addProduct" action="#">
-                                    <input type="number" min="0" style="width: 4rem;">
-                                    <input class="addCart" type="submit"
-                                        style="border-color: transparent; border-radius: 5px;" value="Add">
+                                    <input class="product-quan" type="number" min="0">
+                                    <input class="addCart" type="submit" value="Add">
                                 </form>
                             </div>
                         </div>
@@ -78,13 +80,15 @@
                     <% }); %>
                 </div>
             </div>
+
+            <!-- Cart section -->
             <div class="col-md-3">
-                <div class="card" style="width: 100%; margin-top: 10%;">
+                <div class="card sticky-top" id="cart-card">
                     <div class="card-header">
                         <i class="fas fa-shopping-cart"></i> Your Cart
                     </div>
                     <div class="card-body">
-                        <div id="cart" style="min-height: 50vh">
+                        <div id="cart">
                             <h5>Your selection: </h5>
                         </div>
                         <button class="btn btn-success" id="checkoutmodal" data-toggle="modal"
@@ -119,6 +123,11 @@
         </div>
     </div>
 
+    <!-- footer -->
+    <div class="footer">
+        <p>Bike Rental. All rights reserved.</p>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -130,80 +139,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script>
-        var cart = {};
-        $("form#addProduct").on("submit", function (e) {
-            e.preventDefault();
-            console.log($($(this).children()[0]).val());
-            var quantity = $($(this).children()[0]).val();
-            var product = $(this).parent().children(".card-title").text();
-            var price = $(this).parent().children(".price").text();
-            var type = $(this).parent().children(".type").text();
-            var total = Number(price) * Number(quantity);
-            // cart[$(this).parent().children(".card-title").text()] = $($(this).children()[0]).val();
-            if (quantity != "" && quantity != "0") {
-                // $("#cart").append("<li>" + product + "<ul><li>Quantity: " + quantity + "</li>" + "<li>Price: $" + total + "</li></ul></li>");
-                if (product in cart) {
-                    cart[product]["quantity"] += Number(quantity);
-                    cart[product]["price"] += Number(total);
-                } else {
-                    cart[product] = {};
-                    cart[product]["quantity"] = Number(quantity);
-                    cart[product]["price"] = Number(total);
-                    cart[product]["type"] = type;
-                }
-                $("#cart").html("<h5>Your selection: </h5>");
-                $(".modal-body").html("");
-                Object.keys(cart).forEach(function (item) {
-                    $("#cart").append("<li>" + item + "<ul><li>Quantity: " + cart[item]["quantity"] +
-                        "</li>" + "<li>Price: $" + cart[item]["price"] + "</li></ul></li>");
-                    $(".modal-body").append("<li>" + item + "<ul><li>Quantity: " + cart[item][
-                            "quantity"
-                        ] +
-                        "</li>" + "<li>Price: $" + cart[item]["price"] + "</li></ul></li>");
-                });
-            }
-            $($(this).children()[0]).val("");
-        });
-
-
-        $(document).ready(function () {
-            $("#checkout").on("click", function () {
-                var checkBike = false;
-                Object.keys(cart).forEach(function (item) {
-                    if (cart[item]["type"] == "bike") {
-                        checkBike = true;
-                    }
-                });
-                if (!checkBike) {
-                    $("#error").removeClass("hide");
-                } else {
-                    $("#error").addClass("hide");
-                    $("form#upload").submit();
-                }
-            });
-        });
-
-        $("#checkoutmodal").on("click", function () {
-            var checkBike = false;
-            var total = 0;
-            Object.keys(cart).forEach(function (item) {
-                if (cart[item]["type"] == "bike") {
-                    checkBike = true;
-                }
-                total += cart[item]["price"];
-            });
-            if (checkBike) {
-                $("#error").addClass("hide");
-            }
-            $("#totalPrice").text("Total Price: $" + total);
-        });
-
-        $("#remove").on("click", function () {
-            cart = {};
-            $("#cart").html("<h5>Your selection: </h5>")
-        });
-    </script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

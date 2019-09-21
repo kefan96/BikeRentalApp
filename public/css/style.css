@@ -23,3 +23,56 @@ div#error {
 h5 {
     font-size: 1rem;
 }
+
+#product-body {
+    height: 10rem;
+}
+
+.product-quan {
+    width: 4rem;
+}
+
+#cart-card {
+    width: 100%; margin-top: 10%;
+}
+
+#cart {
+    min-height: 50vh
+}
+
+.addCart {
+    border-color: transparent; 
+    border-radius: 5px;
+    background: #d3d3d3;
+}
+
+.addCart:hover {
+    color: steelblue;
+}
+
+.card-body button.btn {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+#message-sm {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    #message-sm {
+        display: none;
+    }
+}
+
+.footer {
+    height: 3rem;
+    margin-top: 2rem;
+    background: #555;
+    padding-top: 5px;
+}
+
+.footer p {
+    color: #f0f0f0;
+    text-align: center;
+}
