@@ -58,21 +58,25 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                <% rentalList.forEach(function(product){ %>
-                <div class="card my-1" style="width: 20%; float:left; margin-left: 5%; margin-right: 5%">
-                    <img src="<%= product.image %>" alt="" class="card-img-top">
-                    <div class="card-body" style="height: 10rem;">
-                        <h5 class="card-title"><%= product.name %></h5>
-                        $<span class="card-text price"><%= product.price %></span>
-                        <span class="card-text type"><%= product.product_type %></span>
-                        <form id="addProduct" action="#">
-                            <input type="number" min="0" style="width: 4rem;">
-                            <input class="addCart" type="submit" style="border-color: transparent; border-radius: 5px;"
-                                value="Add">
-                        </form>
+                <div class="row">
+                    <% rentalList.forEach(function(product){ %>
+                    <div class="col-md-4 col-6">
+                        <div class="card my-1">
+                            <img src="<%= product.image %>" alt="" class="card-img-top">
+                            <div class="card-body" style="height: 10rem;">
+                                <h5 class="card-title"><%= product.name %></h5>
+                                $<span class="card-text price"><%= product.price %></span>
+                                <span class="card-text type"><%= product.product_type %></span>
+                                <form id="addProduct" action="#">
+                                    <input type="number" min="0" style="width: 4rem;">
+                                    <input class="addCart" type="submit"
+                                        style="border-color: transparent; border-radius: 5px;" value="Add">
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                    <% }); %>
                 </div>
-                <% }); %>
             </div>
             <div class="col-md-3">
                 <div class="card" style="width: 100%; margin-top: 10%;">
