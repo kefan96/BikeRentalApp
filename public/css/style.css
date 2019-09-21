@@ -29,7 +29,7 @@ h5 {
 }
 
 .product-quan {
-    width: 4rem;
+    width: 2rem;
 }
 
 #cart-card {
@@ -62,6 +62,10 @@ h5 {
 @media (min-width: 768px) {
     #message-sm {
         display: none;
+    }
+
+    .product-quan {
+        width: 4rem;
     }
 }
 
