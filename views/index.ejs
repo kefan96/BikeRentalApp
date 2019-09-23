@@ -69,7 +69,7 @@
                             <div class="card-body" id="product-body">
                                 <h5 class="card-title"><%= product.name %></h5>
                                 $<span class="card-text price"><%= product.price %></span>
-                                <span class="card-text type"><%= product.product_type %></span>
+                                <span class="card-text type"><em><%= product.product_type %></em></span>
                                 <form id="addProduct" action="#">
                                     <input class="product-quan" type="number" min="0">
                                     <input class="addCart" type="submit" value="Add">
